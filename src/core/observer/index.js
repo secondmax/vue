@@ -193,6 +193,7 @@ export function defineReactive (
   })
 }
 
+// Vue原型上边的$set方法，对数据和对象进行更新时使用的
 /**
  * Set a property on an object. Adds the new property and
  * triggers change notification if the property doesn't
@@ -202,7 +203,7 @@ export function set (target: Array<any> | Object, key: any, val: any): any {
   if (process.env.NODE_ENV !== 'production' &&
     (isUndef(target) || isPrimitive(target))
   ) {
-    warn(`Cannot set reactive property on undefined, null, or primitive value: ${(target: any)}`)
+    // warn(`Cannot set reactive property on undefined, null, or primitive value: ${(target: any)}`)
   }
   if (Array.isArray(target) && isValidArrayIndex(key)) {
     target.length = Math.max(target.length, key)

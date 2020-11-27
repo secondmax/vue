@@ -10,6 +10,7 @@ import {
 import { updateListeners } from '../vdom/helpers/index'
 
 export function initEvents (vm: Component) {
+  // 创建一个纯净对象，原型为空
   vm._events = Object.create(null)
   vm._hasHookEvent = false
   // init parent attached events

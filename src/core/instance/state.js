@@ -61,6 +61,9 @@ export function initState (vm: Component) {
   }
 }
 
+// 初始化prop数据
+// 主要是校验props数据，以及把props的数据变为响应式数据，
+// 开发环境对进行一些提示
 function initProps (vm: Component, propsOptions: Object) {
   const propsData = vm.$options.propsData || {}
   const props = vm._props = {}
@@ -85,6 +88,7 @@ function initProps (vm: Component, propsOptions: Object) {
           vm
         )
       }
+      // 将props的数据变为响应式的
       defineReactive(props, key, value, () => {
         if (!isRoot && !isUpdatingChildComponent) {
           warn(

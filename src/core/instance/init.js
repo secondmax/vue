@@ -13,8 +13,10 @@ import { extend, mergeOptions, formatComponentName } from '../util/index'
 let uid = 0
 
 export function initMixin (Vue: Class<Component>) {
+  // 实例化Vue时调用的方法，赋予vue的功能
   Vue.prototype._init = function (options?: Object) {
     const vm: Component = this
+    // uid不知道是干啥的
     // a uid
     vm._uid = uid++
 
@@ -49,11 +51,14 @@ export function initMixin (Vue: Class<Component>) {
     }
     // expose real self
     vm._self = vm
+    // 初始化生命周期，各种勾子
     initLifecycle(vm)
+    // 挂载事件，on,emit等
     initEvents(vm)
     initRender(vm)
     callHook(vm, 'beforeCreate')
     initInjections(vm) // resolve injections before data/props
+    // 挂载data和props，methods,watchs
     initState(vm)
     initProvide(vm) // resolve provide after data/props
     callHook(vm, 'created')
